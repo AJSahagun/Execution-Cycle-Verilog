@@ -1,3 +1,16 @@
+module adder(
+  input [31:0] a,  // First operand for addition
+  input [31:0] b,  // Second operand for addition
+  output reg [31:0] sum  // Register to store the sum of a and b
+);
+
+  // Perform addition and store the result in the sum register
+  always @(*) begin
+    sum = a + b;
+  end
+
+endmodule
+
 module pc(
   input wire clk,        // clock
   input wire write_en,   // write enabled
