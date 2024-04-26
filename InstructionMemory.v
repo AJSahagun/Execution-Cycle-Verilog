@@ -1,7 +1,5 @@
 module InstructionMemory (
     input wire [31:0] pc_address,  // pc address input (32-bit)
-    input wire clk,                 // clock
-    input wire reset,               // Rreseting
     output reg [31:0] instruction   // output instruction (32 bits)
 );
 
@@ -23,9 +21,7 @@ end
 
 // output instruction based on PC address
 always @(posedge clk or posedge reset) begin
-    if (reset) begin
-        instruction <= memory[0]; // Reset to default instruction at address 0
-    end else begin
+    begin
         if (pc_address < MEM_SIZE)
             instruction <= memory[pc_address];
         else
