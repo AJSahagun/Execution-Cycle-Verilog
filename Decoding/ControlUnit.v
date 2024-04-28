@@ -17,11 +17,10 @@ always @(*) begin
             ALUSrc = 1;
             ALUOp = 2'b00; 
         end
-       // ... (Other instructions)
         3'b011: begin // SUB
             RegWrite = 1;
             ALUSrc = 0;  
-            ALUOp = 2'b01; // Assuming subtraction uses a different ALUOp
+            ALUOp = 2'b01;
         end
             $display("Control: RegWrite = %b, ALUSrc = %b, ALUOp = %b",
              RegWrite, ALUSrc, ALUOp)

@@ -2,7 +2,6 @@
 
 module Testbench;
 
-    // Instantiate your modules
     wire [2:0] opcode;
     wire [4:0] rs, rt, rd;
     wire [15:0] immediate;
@@ -46,19 +45,18 @@ module Testbench;
 
 
 
-        #200; // Some time for simulation to complete
+        #200;
         $finish;
     end
 
     // Clock generation
     always #10 clk = ~clk;
 
-    // Monitoring (add this within the initial block)
     always @(posedge clk) begin
         $display("Instruction: %b, Opcode: %b, Results: %b", instruction, opcode, result); 
         $display("After ADD: Register 3 = %d", reg_file.registers[3]); 
         $display("After ADDI: Register 2 = %d", reg_file.registers[2]);
-        // Add more values to monitor as needed
+
     end
 
 endmodule

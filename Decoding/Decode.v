@@ -6,7 +6,7 @@ module Decode (
 );
 
 always @(*) begin
-    case (instruction[31:26]) // Assuming R-format instructions
+    case (instruction[31:26]) 
         6'b000000:  begin // ADD
             opcode = 3'b001;
             rs = instruction[25:21];
@@ -20,9 +20,9 @@ always @(*) begin
             rt = instruction[20:16];
             immediate = instruction[15:0]; 
         end
-        // ... (Other instructions like SUB, LW, SW) 
+
         6'b000010: begin // SUB
-            opcode = 3'b011;  // Customize the opcode for SUB
+            opcode = 3'b011;  
             rs = instruction[25:21];
             rt = instruction[20:16];
             rd = instruction[15:11];
