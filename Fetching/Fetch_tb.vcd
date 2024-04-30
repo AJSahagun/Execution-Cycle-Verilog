@@ -1,0 +1,133 @@
+$date
+	Tue Apr 30 22:43:54 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module Fetch_tb $end
+$var wire 32 ! pc_next [31:0] $end
+$var wire 32 " pc_current [31:0] $end
+$var wire 32 # instruction [31:0] $end
+$var parameter 32 $ CLK_PERIOD $end
+$var reg 1 % clk $end
+$var reg 1 & reset $end
+$scope module uut $end
+$var wire 1 % clk $end
+$var wire 32 ' new_pc [31:0] $end
+$var wire 32 ( pc_current [31:0] $end
+$var wire 32 ) pc_next [31:0] $end
+$var wire 1 & reset $end
+$var wire 32 * pc_address [31:0] $end
+$var wire 32 + instruction [31:0] $end
+$var wire 32 , adder_out [31:0] $end
+$scope module IM $end
+$var wire 1 % clk $end
+$var wire 32 - pc_address [31:0] $end
+$var parameter 32 . MEM_SIZE $end
+$var reg 32 / default_instruction [31:0] $end
+$var reg 32 0 instruction [31:0] $end
+$var integer 32 1 i [31:0] $end
+$upscope $end
+$scope module PC $end
+$var wire 1 % clk $end
+$var wire 32 2 new_pc [31:0] $end
+$var wire 1 & reset $end
+$var reg 32 3 pc_address [31:0] $end
+$upscope $end
+$scope module PCAdder $end
+$var wire 32 4 pc_out [31:0] $end
+$var reg 32 5 adder_out [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10000000000 .
+b1010 $
+$end
+#10000
+$dumpvars
+b100 5
+b0 4
+b0 3
+bz 2
+b10000000000 1
+b11011110101011011011111011101111 0
+b11011110101011011011111011101111 /
+b0 -
+b100 ,
+b11011110101011011011111011101111 +
+b0 *
+b100 )
+b0 (
+bz '
+1&
+0%
+b11011110101011011011111011101111 #
+b0 "
+b100 !
+$end
+#15000
+1%
+#20000
+0%
+1&
+#25000
+1%
+#30000
+0%
+0&
+#35000
+bx !
+bx )
+bx ,
+bx 5
+bz "
+bz (
+bz *
+bz -
+bz 3
+bz 4
+1%
+#40000
+0%
+#45000
+1%
+#50000
+0%
+#55000
+1%
+#60000
+0%
+#65000
+1%
+#70000
+0%
+#75000
+1%
+#80000
+0%
+#85000
+1%
+#90000
+0%
+#95000
+1%
+#100000
+0%
+#105000
+1%
+#110000
+0%
+#115000
+1%
+#120000
+0%
+#125000
+1%
+#130000
+0%
