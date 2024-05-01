@@ -1,27 +1,17 @@
-module RegisterFile (
-    input wire [4:0] readReg1, readReg2, writeReg, 
-    input wire [31:0] writeData,
-    input wire RegWrite, clk, // Add a clock
-    output wire [31:0] readData1, readData2
+module RegisterFile(
+    input [4:0] rs1_addr, rs2_addr, rd_addr,  
+    input [31:0] write_data, 
+    input clk, reg_write,
+    output [31:0] rs1_data, rs2_data 
 );
 
-reg [31:0] registers [31:0]; // 32 registers
+  reg [31:0] registers [31:0]; 
 
-initial begin
-    registers[1] = 32'd5;   // Initialize register 1 with value 5
-    registers[2] = 32'd10;  // Initialize register 2 with value 10
-end
+  always @(posedge clk) begin
+    if (reg_write) 
+      registers[rd_addr] <= write_data;
+  end
 
-always @(*) begin  // Reading is always combinatorial
-    readData1 = registers[readReg1];
-    readData2 = registers[readReg2];
-end
-
-always @(posedge clk) begin // Writing on the positive clock edge
-    if (RegWrite) begin
-        $display("RegisterFile:  Writing to register %d, data = %d", writeReg, writeData);
-        registers[writeReg] = writeData;
-    end
-end
-
+  assign rs1_data = registers[rs1_addr];
+  assign rs2_data = registers[rs2_addr];
 endmodule

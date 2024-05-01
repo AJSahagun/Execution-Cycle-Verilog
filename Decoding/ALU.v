@@ -1,18 +1,13 @@
-module ALU (
-    input wire [31:0] A, B,
-    input wire [15:0] immediate,
-    input wire [1:0] ALUOp,
-    output reg [31:0] result
-);
-
-always @(*) begin
-    case (ALUOp)
-        2'b00: result = A + B;  // Add
-        2'b01: result = A - B;  // Subtract
-        2'b10:  result = A + immediate;
-        default: result = 32'b0; // Invalid
-        $display("ALU: A = %d, B = %d, immediate = %d, ALUOp = %b, result = %d",
-        A, B, immediate, ALUOp, result);
+module ALU(input [31:0] A, B, input [2:0] ALUop, output reg [31:0] result, output reg zero);
+  always @(*) begin
+    case (ALUop)
+      3'b000: result = A + B;  // ADD
+      3'b001: result = A - B;  // SUB
+      3'b010: result = A & B;  // AND
+      3'b011: result = A | B;  // OR
+      3'b100: result = A < B;  // SLT (set if less than)
+      default: result = 32'b0; 
     endcase
-end 
+    zero = (result == 0); 
+  end
 endmodule

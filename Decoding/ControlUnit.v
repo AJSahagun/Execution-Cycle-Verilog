@@ -1,29 +1,12 @@
-module ControlUnit (
-    input wire [2:0] opcode,
-    output reg RegWrite,  // Enable register write-back
-    output reg ALUSrc,    // Select ALU operand (immediate or register)
-    output reg [1:0] ALUOp // ALU operation control
-);
-
-always @(*) begin
+module ControlUnit(input [6:0] opcode, output reg reg_write, mem_write, mem_read, mem_to_reg, branch);
+  always @(*) begin
     case (opcode)
-        3'b001: begin // ADD
-            RegWrite = 1;
-            ALUSrc = 0; 
-            ALUOp = 2'b00; 
-        end 
-        3'b010: begin // ADDI
-            RegWrite = 1;
-            ALUSrc = 1;
-            ALUOp = 2'b00; 
-        end
-        3'b011: begin // SUB
-            RegWrite = 1;
-            ALUSrc = 0;  
-            ALUOp = 2'b01;
-        end
-            $display("Control: RegWrite = %b, ALUSrc = %b, ALUOp = %b",
-             RegWrite, ALUSrc, ALUOp)
-   endcase
-end
+      7'b0110011: begin  // R-Type
+        reg_write = 1;
+      end
+      default: begin 
+        reg_write = 0; 
+      end
+    endcase
+  end
 endmodule
