@@ -44,6 +44,9 @@ How It Integrates
 2. Clone the project using Github Desktop
 3. Ensure that that the cloned project is located inside iverilog bin's folder
 4. Open command prompt and go locate current directory to the cloned project
-5. Use this command (applicable in group's 6: iverilog -o simulation_out Decode.v ControlUnit.v ALU.v RegisterFile.v Testbench.v)
+5. Use this command (verilog -o simulation *.v) 
+6. Then, type vvp simulation
+7. Locate gtkwave.exe in your verilog folder. Click new tab and click the generated vcd file
+8. Click the signals and observe.
 
 
