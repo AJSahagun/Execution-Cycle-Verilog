@@ -32,11 +32,11 @@ Computer Architecture (Group Activity)
 ## Group 6 (Decoding Process) 
 
 How It Integrates  
-1. Decode: The Decode module extracts the register addresses ($rs, rt, rd$) from the instruction.  
-2. Register Read: The RegisterFile receives $r_{s}$ and $r_t$ as inputs (readReg1 and readReg2). It provides the contents of those registers on the readData1 and readData2 outputs.  
-3. ALU: The readData1 and readData2 outputs from the RegisterFile connect to the inputs of  ALU.  
-4. Control Unit: The Control Unit generates the RegWrite signal to tell the RegisterFile when to store a result.  
-5. Write-Back: If RegWrite is high, the RegisterFile updates the register specified by writeReg (from the Decode module) with writeData (which generally comes from the ALU's output).
+1. Decode: Decodes instructions to determine the operation and generate appropriate control signals.
+2. Register File: Implements a register file for storing and accessing data within the processor.
+3. ALU: Defines an ALU capable of performing various arithmetic and logical operations.  
+4. Control Unit: Generates control signals for the processor based on the instruction's opcode.  
+5. Testbench: Provides a simulation environment to test the processor design by loading instructions and driving the clock.
 
 ### How to simulate
 
