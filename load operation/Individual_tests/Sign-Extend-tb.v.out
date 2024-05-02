@@ -1,0 +1,65 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000026f1de19990 .scope module, "tb_sign_extender" "tb_sign_extender" 2 3;
+ .timescale 0 0;
+v0000026f1dd22870_0 .net "ext_imm", 31 0, v0000026f1dd23040_0;  1 drivers
+v0000026f1dd22910_0 .var "imm", 15 0;
+S_0000026f1de19b20 .scope module, "extender" "sign_extender" 2 12, 3 1 0, S_0000026f1de19990;
+ .timescale 0 0;
+    .port_info 0 /INPUT 16 "imm";
+    .port_info 1 /OUTPUT 32 "ext_imm";
+v0000026f1dd23040_0 .var "ext_imm", 31 0;
+v0000026f1de1a9e0_0 .net "imm", 15 0, v0000026f1dd22910_0;  1 drivers
+E_0000026f1de1ca70 .event anyedge, v0000026f1de1a9e0_0;
+    .scope S_0000026f1de19b20;
+T_0 ;
+    %wait E_0000026f1de1ca70;
+    %load/vec4 v0000026f1de1a9e0_0;
+    %parti/s 1, 15, 5;
+    %replicate 16;
+    %load/vec4 v0000026f1de1a9e0_0;
+    %concat/vec4; draw_concat_vec4
+    %store/vec4 v0000026f1dd23040_0, 0, 32;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0000026f1de19990;
+T_1 ;
+    %pushi/vec4 255, 0, 16;
+    %store/vec4 v0000026f1dd22910_0, 0, 16;
+    %delay 10, 0;
+    %load/vec4 v0000026f1dd22870_0;
+    %cmpi/e 255, 0, 32;
+    %jmp/0xz  T_1.0, 4;
+    %vpi_call 2 24 "$display", "Test case 1 (Positive immediate) passed" {0 0 0};
+    %jmp T_1.1;
+T_1.0 ;
+    %vpi_call 2 26 "$display", "Test case 1 (Positive immediate) failed. Expected: 0x000000FF, Got: 0x%H", v0000026f1dd22870_0 {0 0 0};
+T_1.1 ;
+    %pushi/vec4 65535, 0, 16;
+    %store/vec4 v0000026f1dd22910_0, 0, 16;
+    %delay 10, 0;
+    %load/vec4 v0000026f1dd22870_0;
+    %cmpi/e 4294967295, 0, 32;
+    %jmp/0xz  T_1.2, 4;
+    %vpi_call 2 34 "$display", "Test case 2 (Negative immediate) passed" {0 0 0};
+    %jmp T_1.3;
+T_1.2 ;
+    %vpi_call 2 36 "$display", "Test case 2 (Negative immediate) failed. Expected: 0xFFFFFFFF, Got: 0x%H", v0000026f1dd22870_0 {0 0 0};
+T_1.3 ;
+    %delay 100, 0;
+    %vpi_call 2 42 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Sign-Extend-tb.v";
+    "./../Sign-Extend.v";
