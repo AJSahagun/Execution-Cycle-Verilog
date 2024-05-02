@@ -16,4 +16,3 @@ module Fetch(
     assign pc_next = adder_out;
 
 endmodule
-
