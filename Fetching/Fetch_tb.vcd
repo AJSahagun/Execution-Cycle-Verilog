@@ -1,5 +1,5 @@
 $date
-	Thu May 02 14:31:02 2024
+	Thu May 02 16:47:25 2024
 $end
 $version
 	Icarus Verilog
@@ -14,15 +14,15 @@ $var wire 32 # instruction [31:0] $end
 $var parameter 32 $ CLK_PERIOD $end
 $var reg 1 % clk $end
 $var reg 1 & reset $end
+$var integer 32 ' i [31:0] $end
 $scope module uut $end
 $var wire 1 % clk $end
-$var wire 32 ' new_pc [31:0] $end
 $var wire 32 ( pc_current [31:0] $end
 $var wire 32 ) pc_next [31:0] $end
 $var wire 1 & reset $end
 $var wire 32 * pc_address [31:0] $end
-$var wire 32 + instruction [31:0] $end
-$var wire 32 , adder_out [31:0] $end
+$var wire 32 + new_pc [31:0] $end
+$var wire 32 , instruction [31:0] $end
 $scope module IM $end
 $var wire 1 % clk $end
 $var wire 32 - pc_address [31:0] $end
@@ -32,8 +32,8 @@ $var reg 32 0 instruction [31:0] $end
 $upscope $end
 $scope module PC $end
 $var wire 1 % clk $end
-$var wire 32 1 new_pc [31:0] $end
 $var wire 1 & reset $end
+$var wire 32 1 new_pc [31:0] $end
 $var reg 32 2 pc_address [31:0] $end
 $upscope $end
 $scope module PCAdder $end
@@ -53,16 +53,16 @@ $dumpvars
 b100 4
 b0 3
 b0 2
-bz 1
+b100 1
 b100000000010000000000000100000 0
 b11011110101011011011111011101111 /
 b0 -
-b100 ,
-b100000000010000000000000100000 +
+b100000000010000000000000100000 ,
+b100 +
 b0 *
 b100 )
 b0 (
-bz '
+b0 '
 1&
 0%
 b100000000010000000000000100000 #
@@ -73,62 +73,59 @@ $end
 1%
 #20000
 0%
-1&
+b1 '
+0&
 #25000
+b1000 !
+b1000 )
+b1000 +
+b1000 1
+b1000 4
+b100 "
+b100 (
+b100 *
+b100 -
+b100 2
+b100 3
 1%
 #30000
 0%
-0&
+b10 '
 #35000
-bx !
-bx )
-bx ,
-bx 4
-bz "
-bz (
-bz *
-bz -
-bz 2
-bz 3
+b1100 !
+b1100 )
+b1100 +
+b1100 1
+b1100 4
+b10101100000100000000000000000100 #
+b10101100000100000000000000000100 ,
+b10101100000100000000000000000100 0
+b1000 "
+b1000 (
+b1000 *
+b1000 -
+b1000 2
+b1000 3
 1%
 #40000
 0%
+b11 '
 #45000
-b11011110101011011011111011101111 #
-b11011110101011011011111011101111 +
-b11011110101011011011111011101111 0
+b10000 !
+b10000 )
+b10000 +
+b10000 1
+b10000 4
+b1100 "
+b1100 (
+b1100 *
+b1100 -
+b1100 2
+b1100 3
+b10010001100100000000000001001 #
+b10010001100100000000000001001 ,
+b10010001100100000000000001001 0
 1%
 #50000
 0%
-#55000
-1%
-#60000
-0%
-#65000
-1%
-#70000
-0%
-#75000
-1%
-#80000
-0%
-#85000
-1%
-#90000
-0%
-#95000
-1%
-#100000
-0%
-#105000
-1%
-#110000
-0%
-#115000
-1%
-#120000
-0%
-#125000
-1%
-#130000
-0%
+b100 '

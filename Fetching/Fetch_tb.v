@@ -14,6 +14,8 @@ module Fetch_tb;
     wire [31:0] instruction;
     wire [31:0] pc_next;
     wire [31:0] pc_current;
+
+    integer i;
     
     // Instantiate the Fetch module
     Fetch uut (
@@ -39,17 +41,16 @@ module Fetch_tb;
     initial begin
         #10;  // Wait for initial reset to complete
         // Perform test here
-
         $dumpfile("Fetch_tb.vcd");
         $dumpvars(0, Fetch_tb);
+        
         // For example, toggle reset and clock, and check outputs
         // Example:
-        $display("PC Current: %h, PC Next: %h, Instruction: %h", pc_current, pc_next, instruction);
-        #10;
-        reset = 1;
-        #10;
-        reset = 0;
-        #100; // Wait for some time
+        for (i = 0; i < 4; i = i + 1) begin
+        #10
+        // Display current PC, next PC, and fetched instruction
+        $display("Iteration %d: PC Current: %h, PC Next: %h, Instruction: %h", i, pc_current, pc_next, instruction);
+        end
         $finish;  // Finish simulation
     end
     
