@@ -10,7 +10,6 @@ module data_memory(
     always @(posedge clk) begin
         if (mem_read) begin
             read_data <= memory[address[7:0]];  // Assume word aligned addresses
-            $display("Memory Read: Address = %h, Data = %h", address, read_data);
         end
     end
 endmodule

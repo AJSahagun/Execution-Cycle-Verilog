@@ -1,17 +1,20 @@
 module alu(
-    input [31:0] a, b,
+    input [31:0] a,
+    input [31:0] b,
     input [2:0] alu_control,
     output reg [31:0] result,
     output zero
 );
-    // Define operations (you can expand this as needed)
     always @(*) begin
         case (alu_control)
-            3'b010: result = a + b;  // ADD for address computation
-            // Add more cases here for SUB, AND, OR, etc.
-            default: result = 32'b0;
+            3'b000: result = a & b;            // AND
+            3'b001: result = a | b;            // OR
+            3'b010: result = a + b;            // ADD
+            3'b110: result = a - b;            // SUBTRACT
+            3'b111: result = (a < b) ? 32'b1 : 32'b0; // SLT
+            default: result = 32'b0;           // Default case
         endcase
-    end
+    end 
 
-    assign zero = (result == 0);
+    assign zero = (result == 0); // Check if result is zero
 endmodule
