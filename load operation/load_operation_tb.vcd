@@ -1,0 +1,117 @@
+$date
+	Thu May 02 18:08:36 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module load_operation_tb $end
+$var wire 32 ! result [31:0] $end
+$var wire 1 " zero $end
+$var wire 32 # reg_data2 [31:0] $end
+$var wire 32 $ reg_data1 [31:0] $end
+$var wire 32 % ext_imm [31:0] $end
+$var reg 32 & address [31:0] $end
+$var reg 1 ' clk $end
+$var reg 16 ( imm [15:0] $end
+$var reg 1 ) mem_read $end
+$var reg 5 * read_reg1 [4:0] $end
+$var reg 5 + read_reg2 [4:0] $end
+$var reg 1 , reset $end
+$var reg 32 - write_data [31:0] $end
+$var reg 5 . write_reg [4:0] $end
+$scope module alu_unit $end
+$var wire 3 / alu_control [2:0] $end
+$var wire 1 " zero $end
+$var wire 32 0 b [31:0] $end
+$var wire 32 1 a [31:0] $end
+$var reg 32 2 result [31:0] $end
+$upscope $end
+$scope module mem $end
+$var wire 32 3 address [31:0] $end
+$var wire 1 ' clk $end
+$var wire 1 ) mem_read $end
+$var reg 32 4 read_data [31:0] $end
+$upscope $end
+$scope module reg_file $end
+$var wire 1 ' clk $end
+$var wire 5 5 read_reg1 [4:0] $end
+$var wire 5 6 read_reg2 [4:0] $end
+$var wire 1 7 reg_write $end
+$var wire 1 , reset $end
+$var wire 32 8 write_data [31:0] $end
+$var wire 5 9 write_reg [4:0] $end
+$var wire 32 : reg_data2 [31:0] $end
+$var wire 32 ; reg_data1 [31:0] $end
+$var integer 32 < i [31:0] $end
+$upscope $end
+$scope module sign_ext $end
+$var wire 16 = imm [15:0] $end
+$var reg 32 > ext_imm [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 >
+b0 =
+bx <
+b0 ;
+b0 :
+b0 9
+b0 8
+07
+b0 6
+b0 5
+bx 4
+b0 3
+b0 2
+b0 1
+b0 0
+b10 /
+b0 .
+b0 -
+1,
+b0 +
+b0 *
+0)
+b0 (
+0'
+b0 &
+b0 %
+b0 $
+b0 #
+x"
+bx !
+$end
+#5
+b100000 <
+1'
+#10
+0'
+1)
+b1100100 &
+b1100100 3
+0,
+#15
+1'
+#20
+0'
+#25
+1'
+#30
+0'
+0)
+#35
+1'
+#40
+0'
+#45
+1'
+#50
+0'

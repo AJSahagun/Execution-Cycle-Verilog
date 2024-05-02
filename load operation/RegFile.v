@@ -10,12 +10,14 @@ module register_file(
     output [31:0] reg_data2
 );
     reg [31:0] registers [31:0]; // Array of registers
+
+    integer i;
     
     // Reset and write operation
     always @(posedge clk) begin
         if (reset) begin
             // Reset registers to 0
-            for (int i = 0; i < 32; i = i + 1) begin
+            for (i = 0; i < 32; i = i + 1) begin
                 registers[i] <= 0;
             end
         end
