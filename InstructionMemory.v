@@ -10,7 +10,7 @@ module InstructionMemory (
 parameter MEM_SIZE = 1024;               // default memory size
 
 // define memory for storing instructions
-reg [31:0] memory [0:(MEM_SIZE-1)] = '{default: 32'hDEADBEEF}; // Initialize memory with default instructions
+reg [31:0] memory [0:(MEM_SIZE-1)] = '{default: 32'hBADCAFE}; // Initialize memory with default instructions
 
 // Load instructions into memory when load_instructions signal is high
 always @(posedge clk) begin
