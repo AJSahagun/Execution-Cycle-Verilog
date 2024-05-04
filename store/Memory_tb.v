@@ -1,3 +1,4 @@
+`include "ALU.v"
 `include "memory.v"
 
 module memory_tb;
@@ -12,32 +13,30 @@ module memory_tb;
         $dumpfile("Memory_tb.vcd");
         $dumpvars(0, memory_tb);
 
-        // Write to memory
+
         address = 16'h0000;
         write_data = 8'hAA;
         write_enable = 1'b1;
         #10;
 
-        // Read from memory
+
         write_enable = 1'b0;
         #10;
 
         $display("read_data = %h", read_data); // Should print aa
 
-        // Write to another address
         address = 16'h0001;
         write_data = 8'hBB;
         write_enable = 1'b1;
         #10;
 
-        // Read from the first address
         address = 16'h0000;
         write_enable = 1'b0;
         #10;
 
         $display("read_data = %h", read_data); // Should still print aa
 
-        // Read from the second address
+
         address = 16'h0001;
         #10;
 
