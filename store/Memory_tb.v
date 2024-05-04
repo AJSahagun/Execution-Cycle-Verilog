@@ -1,7 +1,7 @@
 `include "ALU.v"
-`include "memory.v"
+`include "Memory.v"
 
-module top;
+module memory_tb;
     reg [31:0] a, b;
     reg [2:0] alu_control;
     wire [31:0] result;
@@ -15,6 +15,9 @@ module top;
     memory mem (.address(address), .write_data(write_data), .write_enable(write_enable), .read_data(read_data));
 
     initial begin
+        $dumpfile("Memory_tb.vcd");
+        $dumpvars(0, memory_tb);
+
         a = 32'h00008000; 
         b = 16'h8000; 
         alu_control = 3'b010;
