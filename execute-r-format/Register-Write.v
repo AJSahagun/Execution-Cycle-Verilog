@@ -7,11 +7,11 @@
 
 module read_register(
     input wire [2:0] ALU_operation,
-    input wire [4:0] rs_address, rd_address, out_address,//three 5-bit registers in an operation $t1, $t2, $t5
+    input wire [4:0] rs_address, rt_address, out_address,//three 5-bit registers in an operation $t1, $t2, $t5
     input wire clk, //clock input
     input wire reset_input,//reset input
     input wire write_enabled, //write data to registers, boolean
-    input wire [31:0] rs_data, rd_data, //$t1, $t2
+    input wire [31:0] rs_data, rt_data, //$t1, $t2
     output reg [31:0] out_data); //output $t5
 
     wire [31:0] out; //dito ilalagay yung output
@@ -20,7 +20,7 @@ module read_register(
     ALU alu_module(
         .ALUop(ALU_operation),
         .A(rs_data),
-        .B(rd_data),
+        .B(rt_data),
         .result(out)
     );
 
