@@ -29,6 +29,29 @@ Computer Architecture (Group Activity)
     6. In Type | Signals tab; Choose and append to see the wave representation.
 
 
+## Group 2 (R FORMAT OPERATIONS EXECUTION)
+
+### Process:
+
+1. Register Write: Reads the addresses of the reading registers (rs_address, rt_address) and the writing register (out_address) so it determines where it is supposed to be stored.
+2. Instruction: It is then dissected into 4 parts the operation, destination register, first register operand, and second register operand.
+3. ALU: Using the ALU it does the operations called but, is used to write data back to the register through Register Write.
+
+### How to test:
+
+1. Ensure that the latest version of *[Icarus Verilog](https://bleyer.org/icarus/)* is installed.
+2. Clone the project locally; download the code in web, through Github desktop, or through Github CLI.
+3. Click Open with VScode and go down to the terminal
+    - To ensure compilation always do this command in the terminal: `iverilog -o Register-Write-tb.vvp Register-Write-tb.v`
+    - To run the test bench file type in the terminal : `vvp Register-Write-tb.vvp`
+4. Only for observational purposes, Open in GTKWave:
+    1. Use the command in the terminal `gtkwave` to open it
+    2. Go to `File > Open New Tab >`
+    3. Locate `dump.vcd`
+    4. Append all the signals and observe how writing data in registers, and operations are executed works.
+
+
+
 ## Group 6 (Decoding Process) 
 
 How It Integrates  
