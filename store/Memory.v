@@ -4,7 +4,7 @@ module memory (
     input write_enable,
     output [7:0] read_data
 );
-    reg [7:0] mem [0:65535]; // 2^16 addresses
+    reg [7:0] mem [0:65535]; 
 
     always @(posedge write_enable) begin
         mem[address] <= write_data;
