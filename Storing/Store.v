@@ -1,8 +1,6 @@
 `include "ALU.v"
-`include "Memory.v"
 `include "RegisterFile.v"
 `include "SignExtend.v"
-`include "Memory.v"
 
 module store(
     input clk,
@@ -11,8 +9,8 @@ module store(
     input [31:0] Read_data1,
     input [31:0] Read_data2,
     output reg [31:0] address,
-    output reg [31:0] write_data
-    output reg write_enable,
+    output reg [31:0] write_data,
+    output reg write_enable
 );
 
     wire [31:0] Sign_extended;
@@ -20,13 +18,13 @@ module store(
     wire ALU_zero;
 
     // Sign extend module instantiation
-    sign_extend dut (
+    sign_extend SE (
         .in(instruction[15:0]),
         .out(Sign_extended)
     );
 
     // ALU module instantiation
-    ALU dut (
+    ALU alu (
         .a(Read_data1),
         .b(Sign_extended),
         .alu_control(3'b010), // Addition operation
@@ -34,7 +32,7 @@ module store(
         .zero(ALU_zero)
     );
 
-    RegisterFile dut (
+    RegisterFile registerfile (
         .Read_data2(Read_data2)
     );
 
