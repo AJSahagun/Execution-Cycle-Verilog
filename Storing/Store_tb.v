@@ -38,12 +38,13 @@ always #5 clk = ~clk; // Toggle every 5 time units
         $dumpfile("Store_tb.vcd");
         $dumpvars(0, store_tb);
 
-        #10 instruction = 32'b101011_00100_01001_0000000000000100;
-           // Read_data1  = 32'h00000000; 
+        #10 
+        instruction = 32'b101011_00100_01001_0000000000000100;
+            Read_data1  = 32'h00000000; 
             Read_data2  = 32'h12345678;
        
         #10 instruction = 32'b101011_00100_01010_0000000000100000;
-            // Read_data1  = 32'h0000001C; 
+            Read_data1  = 32'h0000001C; 
             Read_data2  = 32'hABCDEF01;
 
         #20 $finish;  // End the simulation

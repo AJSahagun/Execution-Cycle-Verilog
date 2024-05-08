@@ -32,6 +32,7 @@ module memory_tb;
         b = 16'h8000; 
         alu_control = 3'b010;
 
+        // tb of store
         address = 16'h0000; 
         write_data = 8'hFF;
         write_enable = 1'b1;

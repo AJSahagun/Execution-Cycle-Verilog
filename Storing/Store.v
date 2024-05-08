@@ -10,9 +10,9 @@ module store(
     input [31:0] instruction,
     input [31:0] Read_data1,
     input [31:0] Read_data2,
-    output reg [31:0] ALU_result,
-    output reg MemWrite,
-    output reg [31:0] Write_data
+    output reg [31:0] address,
+    output reg [31:0] write_data
+    output reg write_enable,
 );
 
     wire [31:0] Sign_extended;
@@ -20,13 +20,13 @@ module store(
     wire ALU_zero;
 
     // Sign extend module instantiation
-    sign_extend SE (
+    sign_extend dut (
         .in(instruction[15:0]),
         .out(Sign_extended)
     );
 
     // ALU module instantiation
-    ALU alu_inst(
+    ALU dut (
         .a(Read_data1),
         .b(Sign_extended),
         .alu_control(3'b010), // Addition operation
@@ -34,12 +34,17 @@ module store(
         .zero(ALU_zero)
     );
 
+    RegisterFile dut (
+        .Read_data2(Read_data2)
+    );
+
     // Control logic for store operation
     always @(*) begin
-        ALU_result = ALU_output;
-        MemWrite = 1'b1; // Enable memory write
-        Write_data = Read_data2; // Data to be stored
-
+        address = ALU_output;
+        write_data = Read_data2; // Data to be stored
+        write_enable = 1'b1;
     end
+
+    
 
 endmodule
