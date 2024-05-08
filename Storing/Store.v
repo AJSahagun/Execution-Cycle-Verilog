@@ -37,8 +37,8 @@ module store(
     );
 
     RegisterFile registerfile (
-        // .reset(reset),
-        // .clk(clk),
+         .reset(reset),
+         .clk(clk),
         // .RegWrite(RegWrite),
         // .Read_register1(Read_register1),
         // .Read_register2(Read_register2),

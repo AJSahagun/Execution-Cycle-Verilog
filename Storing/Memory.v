@@ -1,22 +1,25 @@
-`include "Store.v"
+// `include "Store.v"
 
 module memory (
-    input [31:0] address, // from ALU
-    input [31:0] write_data, // from register
+    input [31:0] address, // from ALU, memory address
+    input [31:0] write_data, // from register, memory address contents
     input write_enable,
-    output [31:0] mem_read_data
+    input clk, // All synchronous elements, includin memories, should have a clock signal
+    output [31:0] mem_read_data //Output of Memory Address contents
 );
 
-    reg [7:0] mem [0:1024]; // size of the memory array, 2^10
+    reg [31:0] mem [0:255]; // 256 words of 32-bit memory
 
-    store dut (
-        .address(address),
-        .write_data(write_data),
-        .write_enable(write_enable)
-    );
+    // store dut (
+    //     .address(address),
+    //     .write_data(write_data),
+    //     .write_enable(write_enable)
+    // );
 
-    always @(posedge write_enable) begin
-        mem[address] <= write_data;
+    always @(posedge clk) begin
+        if(write_enable == 1'b1)begin
+            mem[address] <= write_data;
+        end
     end
 
     assign mem_read_data = mem[address];
