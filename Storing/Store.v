@@ -6,8 +6,12 @@ module store(
     input clk,
     input reset,
     input [31:0] instruction,
-    input [31:0] Read_data1,
-    input [31:0] Read_data2,
+    input wire [31:0] Read_data1,
+    input wire [31:0] Read_data2,
+    // input [4:0] Read_register1,
+    // input [4:0] Read_register2,
+    // input [4:0] Write_register,
+    // input [31:0] Write_data,
     output reg [31:0] address,
     output reg [31:0] write_data,
     output reg write_enable
@@ -33,6 +37,14 @@ module store(
     );
 
     RegisterFile registerfile (
+        // .reset(reset),
+        // .clk(clk),
+        // .RegWrite(RegWrite),
+        // .Read_register1(Read_register1),
+        // .Read_register2(Read_register2),
+        // .Write_register(Write_register),
+        // .Write_data(Write_data),
+        .Read_data1(Read_data2),
         .Read_data2(Read_data2)
     );
 
@@ -43,6 +55,5 @@ module store(
         write_enable = 1'b1;
     end
 
-    
 
 endmodule

@@ -1,5 +1,5 @@
 $date
-	Thu May 09 01:13:30 2024
+	Thu May 09 02:01:14 2024
 $end
 $version
 	Icarus Verilog
@@ -40,15 +40,15 @@ $var wire 1 - zero $end
 $var reg 32 6 result [31:0] $end
 $upscope $end
 $scope module registerfile $end
-$var wire 32 7 Read_data2 [31:0] $end
-$var wire 5 8 Read_register1 [4:0] $end
-$var wire 5 9 Read_register2 [4:0] $end
-$var wire 1 : RegWrite $end
-$var wire 32 ; Write_data [31:0] $end
-$var wire 5 < Write_register [4:0] $end
-$var wire 1 = clk $end
-$var wire 1 > reset $end
-$var wire 32 ? Read_data1 [31:0] $end
+$var wire 32 7 Read_data1 [31:0] $end
+$var wire 32 8 Read_data2 [31:0] $end
+$var wire 5 9 Read_register1 [4:0] $end
+$var wire 5 : Read_register2 [4:0] $end
+$var wire 1 ; RegWrite $end
+$var wire 32 < Write_data [31:0] $end
+$var wire 5 = Write_register [4:0] $end
+$var wire 1 > clk $end
+$var wire 1 ? reset $end
 $var integer 32 @ i [31:0] $end
 $upscope $end
 $upscope $end
@@ -57,42 +57,41 @@ $enddefinitions $end
 #10
 $dumpvars
 bx @
-bx ?
+z?
 z>
-z=
+bz =
 bz <
-bz ;
-z:
+z;
+bz :
 bz 9
-bz 8
+bx 8
 bx 7
-bx 6
-bx 5
+b0 6
+b0 5
 b10 4
-bx 3
-bx 2
-bx 1
+b0 3
+b0 2
+b0 1
 bx 0
-bx /
-bx .
-x-
-bx ,
-bx +
+b0 /
+b0 .
+1-
+b0 ,
+b0 +
 bx *
-bx )
-1(
-bx '
+b0 )
+0(
+b0 '
 0&
-bx %
-bx $
-bx #
+b0 %
+b0 $
+b0 #
 bx "
-x!
+1!
 $end
 #15
 1&
 #20
-1!
 b100 #
 b100 /
 0-
@@ -104,14 +103,19 @@ b100 5
 b100 1
 0&
 b10010001101000101011001111000 %
-b0 $
-b0 )
-b0 3
 b10101100100010010000000000000100 '
 b10101100100010010000000000000100 +
 #25
 1&
 #30
+0&
+#35
+1&
+#40
+0&
+#45
+1&
+#50
 b111100 #
 b111100 /
 b111100 .
@@ -127,11 +131,11 @@ b11100 )
 b11100 3
 b10101100100010100000000000100000 '
 b10101100100010100000000000100000 +
-#35
+#55
 1&
-#40
+#60
 0&
-#45
+#65
 1&
-#50
+#70
 0&
