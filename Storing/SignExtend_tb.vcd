@@ -1,0 +1,37 @@
+$date
+	Wed May 08 22:12:54 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module signextend_tb $end
+$var wire 1 ! zero $end
+$var wire 32 " result [31:0] $end
+$var reg 32 # a [31:0] $end
+$var reg 3 $ alu_control [2:0] $end
+$var reg 32 % b [31:0] $end
+$scope module alu $end
+$var wire 32 & a [31:0] $end
+$var wire 3 ' alu_control [2:0] $end
+$var wire 32 ( b [31:0] $end
+$var wire 1 ! zero $end
+$var reg 32 ) result [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10000000000000000 )
+b1000000000000000 (
+b10 '
+b1000000000000000 &
+b1000000000000000 %
+b10 $
+b1000000000000000 #
+b10000000000000000 "
+0!
+$end
+#10

@@ -1,24 +1,36 @@
-`include "ALU.v"
-
+`timescale 1ps/1ps
+`include "SignExtend.v"
 module signextend_tb;
 
-    reg [31:0] a, b;
-    reg [2:0] alu_control;
-    wire [31:0] result;
-    wire zero;
+  // Inputs
+  reg [15:0] in;
 
-    ALU alu (.a(a), .b(b), .alu_control(alu_control), .result(result), .zero(zero));
+  // Outputs
+  wire [31:0] out;
 
-    initial begin
-        $dumpfile("SignExtend_tb.vcd");
-        $dumpvars(0, signextend_tb);
+  // Instantiate the sign_extend module
+  sign_extend dut (
+    .in(in),
+    .out(out)
+  );
 
-        a = 32'h00008000;
-        b = 16'h8000;
-        alu_control = 3'b010;
+  initial begin
+    // Test cases with positive and negative values
+    $display("Testing sign_extend module");
+    $monitor("in = %h, out = %h", in, out);
 
-        #10;
+    // Positive test case
+    in = 16'b0000_0000_1111_1111;  // Positive value (all bits 0)
 
-        $display("result = %h, zero = %b", result, zero);
-    end
+    #10;  // Wait for 10ns for signal propagation
+
+    // Negative test case
+    in = 16'b1000_0000_0000_0000;  // Negative value (sign bit 1)
+
+
+    #10;
+
+    $finish;
+  end
+
 endmodule

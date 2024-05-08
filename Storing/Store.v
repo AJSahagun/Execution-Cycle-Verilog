@@ -2,6 +2,7 @@
 `include "Memory.v"
 `include "RegisterFile.v"
 `include "SignExtend.v"
+`include "Memory.v"
 
 module store(
     input clk,
