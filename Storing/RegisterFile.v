@@ -18,5 +18,6 @@ module RegisterFile(reset, clk, RegWrite, Read_register1, Read_register2, Write_
 				RF_data[i] <= 32'h00000000;
 		else if (RegWrite && (Write_register != 5'b00000))
 			RF_data[Write_register] <= Write_data;
+			
 
 endmodule
