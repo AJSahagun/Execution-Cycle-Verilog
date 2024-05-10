@@ -49,10 +49,16 @@ module store(
     );
 
     // Control logic for store operation
-    always @(*) begin
-        address = ALU_output;
-        write_data = Read_data2; // Data to be stored
-        write_enable = 1'b1;
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            address <= 32'b0;
+            write_data <= 32'b0;
+            write_enable <= 1'b0; // Change this to 0 when reset
+        end else begin
+            address <= ALU_output;
+            write_data <= Read_data2; // Data to be stored
+            write_enable <= 1'b1;
+        end
     end
 
 

@@ -1,5 +1,5 @@
 $date
-	Thu May 09 02:18:38 2024
+	Fri May 10 22:54:34 2024
 $end
 $version
 	Icarus Verilog
@@ -8,8 +8,8 @@ $timescale
 	1ps
 $end
 $scope module store_tb $end
-$var wire 32 ! write_data [31:0] $end
-$var wire 1 " write_enable $end
+$var wire 1 ! write_enable $end
+$var wire 32 " write_data [31:0] $end
 $var wire 32 # address [31:0] $end
 $var reg 32 $ Read_data1 [31:0] $end
 $var reg 32 % Read_data2 [31:0] $end
@@ -27,7 +27,7 @@ $var wire 1 - ALU_zero $end
 $var wire 32 . ALU_output [31:0] $end
 $var reg 32 / address [31:0] $end
 $var reg 32 0 write_data [31:0] $end
-$var reg 1 " write_enable $end
+$var reg 1 ! write_enable $end
 $scope module SE $end
 $var wire 16 1 in [15:0] $end
 $var wire 32 2 out [31:0] $end
@@ -73,7 +73,7 @@ b10 4
 b0 3
 b0 2
 b0 1
-bx 0
+b0 0
 b0 /
 b0 .
 1-
@@ -87,14 +87,15 @@ b0 '
 b0 %
 b0 $
 b0 #
-1"
-bz !
+b0 "
+0!
 $end
 #25
+1!
+bx "
+bx 0
 1&
 #30
-b100 #
-b100 /
 0-
 b100 .
 b100 6
@@ -107,6 +108,8 @@ b10010001101000101011001111000 %
 b10101100100010010000000000000100 '
 b10101100100010010000000000000100 +
 #35
+b100 #
+b100 /
 1&
 #40
 0&
@@ -117,8 +120,6 @@ b10101100100010010000000000000100 +
 #55
 1&
 #60
-b111100 #
-b111100 /
 b111100 .
 b111100 6
 b100000 ,
@@ -133,6 +134,8 @@ b11100 3
 b10101100100010100000000000100000 '
 b10101100100010100000000000100000 +
 #65
+b111100 #
+b111100 /
 1&
 #70
 0&
