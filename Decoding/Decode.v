@@ -1,36 +1,39 @@
-module Decode (
-    input wire [31:0] instruction, // 32-bit instruction
-    output reg [2:0] opcode,       // Operation code
-    output reg [4:0] rs, rt, rd,  // Source, target, destination registers
-    output reg [15:0] immediate   // Immediate value 
+module Decode(
+    input [31:0] instruction, 
+    output reg [2:0] ALUop,
+    output reg reg_write, mem_write, mem_read, mem_to_reg, branch 
 );
 
-always @(*) begin
-    case (instruction[31:26]) 
-        6'b000000:  begin // ADD
-            opcode = 3'b001;
-            rs = instruction[25:21];
-            rt = instruction[20:16];
-            rd = instruction[15:11];
-            immediate = 0; 
-        end
-        6'b001000: begin // ADDI
-            opcode = 3'b010;
-            rs = instruction[25:21];
-            rt = instruction[20:16];
-            immediate = instruction[15:0]; 
-        end
+wire [6:0] opcode = instruction[6:0];
+wire [2:0] funct3 = instruction[14:12];
 
-        6'b000010: begin // SUB
-            opcode = 3'b011;  
-            rs = instruction[25:21];
-            rt = instruction[20:16];
-            rd = instruction[15:11];
-            immediate = 0; 
+
+reg is_rtype, is_itype_load, is_itype_store, is_branch; 
+
+always @(*) begin
+    case (opcode)
+        7'b0110011: begin
+            ALUop = funct3;
+            reg_write = 1;
+            is_rtype = 1;   
+            is_itype_load = 0;
+            is_itype_store = 0;
+            is_branch = 0;
         end
-            $display("Decode: opcode = %b, rs = %d, rt = %d, rd = %d, immediate = %d", 
-             opcode, rs, rt, rd, immediate); 
+        7'b0010011: begin // I-type (addi, lw) 
+            ALUop = 3'b000;   
+            reg_write = 1;
+            mem_read = (funct3 == 3'b010); 
+            mem_write = 0;
+            mem_to_reg = (funct3 == 3'b010); 
+            branch = 0; 
+            is_rtype = 0; 
+            is_itype_load = (funct3 == 3'b010);
+            is_itype_store = 0; 
+            is_branch = 0; 
+        end
+        default: begin 
+        end
     endcase
 end
-
 endmodule

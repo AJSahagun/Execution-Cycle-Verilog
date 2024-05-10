@@ -1,0 +1,202 @@
+$date
+	Sat May 04 19:23:24 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module read_register_tb $end
+$var wire 32 ! out_data [31:0] $end
+$var reg 3 " ALU_operation [2:0] $end
+$var reg 1 # clk $end
+$var reg 5 $ out_address [4:0] $end
+$var reg 32 % output_storage [31:0] $end
+$var reg 5 & rd_address [4:0] $end
+$var reg 32 ' rd_data [31:0] $end
+$var reg 1 ( reset_input $end
+$var reg 5 ) rs_address [4:0] $end
+$var reg 32 * rs_data [31:0] $end
+$var reg 1 + write_enabled $end
+$scope module dut $end
+$var wire 3 , ALU_operation [2:0] $end
+$var wire 1 # clk $end
+$var wire 5 - out_address [4:0] $end
+$var wire 5 . rd_address [4:0] $end
+$var wire 32 / rd_data [31:0] $end
+$var wire 1 ( reset_input $end
+$var wire 5 0 rs_address [4:0] $end
+$var wire 32 1 rs_data [31:0] $end
+$var wire 1 + write_enabled $end
+$var wire 32 2 out [31:0] $end
+$var reg 32 3 out_data [31:0] $end
+$scope module alu_module $end
+$var wire 32 4 A [31:0] $end
+$var wire 3 5 ALUop [2:0] $end
+$var wire 32 6 B [31:0] $end
+$var reg 32 7 result [31:0] $end
+$var reg 1 8 zero $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+08
+b1001110 7
+b101111 6
+b0 5
+b11111 4
+b0 3
+b1001110 2
+b11111 1
+b1 0
+b101111 /
+b10 .
+b11 -
+b0 ,
+0+
+b11111 *
+b1 )
+0(
+b101111 '
+b10 &
+bx %
+b11 $
+0#
+b0 "
+b0 !
+$end
+#5
+1#
+#10
+0#
+#15
+1#
+#20
+0#
+#25
+1#
+#30
+0#
+#35
+1#
+#40
+0#
+#45
+1#
+#50
+0#
+#55
+1#
+#60
+0#
+#65
+1#
+#70
+0#
+#75
+1#
+#80
+0#
+#85
+1#
+#90
+0#
+#95
+1#
+#100
+0#
+b1001110 %
+1+
+1(
+#105
+b1001110 !
+b1001110 3
+1#
+#110
+0#
+#115
+1#
+#120
+0#
+#125
+1#
+#130
+0#
+#135
+1#
+#140
+0#
+#145
+1#
+#150
+0#
+#155
+1#
+#160
+0#
+#165
+1#
+#170
+0#
+#175
+1#
+#180
+0#
+#185
+1#
+#190
+0#
+#195
+1#
+#200
+b0 !
+b0 3
+0#
+0(
+0+
+#205
+1#
+#210
+0#
+#215
+1#
+#220
+0#
+#225
+1#
+#230
+0#
+#235
+1#
+#240
+0#
+#245
+1#
+#250
+0#
+#255
+1#
+#260
+0#
+#265
+1#
+#270
+0#
+#275
+1#
+#280
+0#
+#285
+1#
+#290
+0#
+#295
+1#
+#300
+0#
