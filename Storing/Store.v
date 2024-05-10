@@ -2,7 +2,7 @@
 `include "RegisterFile.v"
 `include "SignExtend.v"
 
-module store(
+module store0(
     input clk, reset,
     input [31:0] instruction,
     input wire [31:0] Read_data1,

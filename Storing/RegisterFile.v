@@ -2,8 +2,8 @@
 module RegisterFile(
 	input reset,
 	input clk,
-	input [4:0] Read_register1,
-	input [4:0] Read_register2,
+	input [31:0] Read_register1,
+	input [31:0] Read_register2,
 	output reg [31:0] Read_data1,
 	output reg [31:0] Read_data2
 	);
@@ -47,8 +47,8 @@ module RegisterFile(
 			RF_data [31] = 32'h00000000;
 
 		end else begin 
-			Read_data1 <= (Read_register1 == 5'b00000)? 32'h00000000: RF_data[Read_register1];
-			Read_data2 <= (Read_register2 == 5'b00000)? 32'h00000000: RF_data[Read_register2];
+			Read_data1 <= (Read_register1 == 32'h00000000)? 32'h00000000: RF_data[Read_register1];
+			Read_data2 <= (Read_register2 == 32'h00000000)? 32'h00000000: RF_data[Read_register2];
 		end
 
 

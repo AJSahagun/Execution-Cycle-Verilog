@@ -1,14 +1,14 @@
 `include "RegisterFile.v"
 `timescale 1ps/1ps
 
-module RegisterFile_tb;
+module RegisterFile_tb();
 
     // Parameters
     parameter CLK_PERIOD = 10; // Clock period in time units
 
     // Inputs
-    reg reset, clk, RegWrite;
-    reg [4:0] Read_register1, Read_register2;
+    reg reset, clk;
+    reg [31:0] Read_register1, Read_register2;
 
     // Outputs
     wire [31:0] Read_data1, Read_data2;
@@ -24,7 +24,7 @@ module RegisterFile_tb;
     );
 
     // Clock generation
-    always #((CLK_PERIOD/2)) clk = ~clk;
+    always #(CLK_PERIOD) clk = ~clk;
 
     // Test stimuli
     initial begin
