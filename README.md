@@ -29,6 +29,28 @@ Computer Architecture (Group Activity)
     6. In Type | Signals tab; Choose and append to see the wave representation.
 
 
+## Group 5 (Branch Operation) 
+
+### How to test:
+
+1. Ensure that the latest version of *[Icarus Verilog](https://bleyer.org/icarus/)* is installed.
+2. Clone the project locally; download the code in web, through Github desktop, or through Github CLI.
+3. Open the terminal of your choice:
+    1. Change directory to the file path of the project
+    2. Use the command:
+        - If you modified the test bench: `iverilog -o output.vvp BranchTargetCalculator_tb.v BranchTargetCalculator.v`
+        - To run the test bench in terminal: `vvp output.vvp`
+4. (Optional) Open in GTKWave:
+    1. Use the command `gtkwave` to open GTKWave
+    2. Go to `File > Open New Tab >`
+    3. Locate ` waveform.vcd`
+    4. In the SST tab expand `BranchTargetCalculator_tb > uut`
+    5. Select All the Signal/Waves you want to view.
+    6. In Type | Signals tab; Choose and append to see the wave representation.
+
+
+
+
 ## Group 6 (Decoding Process) 
 
 How It Integrates  
