@@ -1,0 +1,23 @@
+module SignExtend(
+    input wire [15:0] in,
+    output wire [31:0] out
+);
+    assign out = {{16{in[15]}}, in};  // Sign-extend from 16 to 32 bits
+endmodule
+
+module ShiftLeft2(
+    input wire [31:0] in,
+    output wire [31:0] out
+);
+    assign out = in << 2;  // Shift left by 2 bits
+endmodule
+
+module Adder(
+    input wire [31:0] a,
+    input wire [31:0] b,
+    output wire [31:0] result
+);
+    assign result = a + b;  // Simple addition
+endmodule
+
+
