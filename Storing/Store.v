@@ -1,5 +1,4 @@
 `include "ALU.v"
-`include "Memory.v"
 `include "RegisterFile.v"
 `include "SignExtend.v"
 
@@ -7,11 +6,15 @@ module store(
     input clk,
     input reset,
     input [31:0] instruction,
-    input [31:0] Read_data1,
-    input [31:0] Read_data2,
-    output reg [31:0] ALU_result,
-    output reg MemWrite,
-    output reg [31:0] Write_data
+    input wire [31:0] Read_data1,
+    input wire [31:0] Read_data2,
+    // input [4:0] Read_register1,
+    // input [4:0] Read_register2,
+    // input [4:0] Write_register,
+    // input [31:0] Write_data,
+    output reg [31:0] address,
+    output reg [31:0] write_data,
+    output reg write_enable
 );
 
     wire [31:0] Sign_extended;
@@ -25,7 +28,7 @@ module store(
     );
 
     // ALU module instantiation
-    ALU alu_inst(
+    ALU alu (
         .a(Read_data1),
         .b(Sign_extended),
         .alu_control(3'b010), // Addition operation
@@ -33,12 +36,30 @@ module store(
         .zero(ALU_zero)
     );
 
-    // Control logic for store operation
-    always @(*) begin
-        ALU_result = ALU_output;
-        MemWrite = 1'b1; // Enable memory write
-        Write_data = Read_data2; // Data to be stored
+    RegisterFile registerfile (
+         .reset(reset),
+         .clk(clk),
+        // .RegWrite(RegWrite),
+        // .Read_register1(Read_register1),
+        // .Read_register2(Read_register2),
+        // .Write_register(Write_register),
+        // .Write_data(Write_data),
+        .Read_data1(Read_data2),
+        .Read_data2(Read_data2)
+    );
 
+    // Control logic for store operation
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            address <= 32'b0;
+            write_data <= 32'b0;
+            write_enable <= 1'b0; // Change this to 0 when reset
+        end else begin
+            address <= ALU_output;
+            write_data <= Read_data2; // Data to be stored
+            write_enable <= 1'b1;
+        end
     end
+
 
 endmodule
