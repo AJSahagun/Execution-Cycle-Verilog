@@ -10,12 +10,6 @@ module memory (
 
     reg [31:0] mem [0:255]; // 256 words of 32-bit memory
 
-    // store dut (
-    //     .address(address),
-    //     .write_data(write_data),
-    //     .write_enable(write_enable)
-    // );
-
     always @(posedge clk) begin
         if(write_enable == 1'b1)begin
             mem[address] <= write_data;

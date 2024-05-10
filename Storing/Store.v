@@ -3,8 +3,7 @@
 `include "SignExtend.v"
 
 module store(
-    input clk,
-    input reset,
+    input clk, reset,
     input [31:0] instruction,
     input wire [31:0] Read_data1,
     input wire [31:0] Read_data2,
@@ -36,30 +35,30 @@ module store(
         .zero(ALU_zero)
     );
 
-    RegisterFile registerfile (
-         .reset(reset),
-         .clk(clk),
-        // .RegWrite(RegWrite),
-        // .Read_register1(Read_register1),
-        // .Read_register2(Read_register2),
-        // .Write_register(Write_register),
-        // .Write_data(Write_data),
-        .Read_data1(Read_data2),
-        .Read_data2(Read_data2)
-    );
+    // RegisterFile registerfile (
+    //      .reset(reset),
+    //      .clk(clk),
+    //     // .RegWrite(RegWrite),
+    //     // .Read_register1(Read_register1),
+    //     // .Read_register2(Read_register2),
+    //     // .Write_register(Write_register),
+    //     // .Write_data(Write_data),
+    //     .Read_data1(Read_data1),
+    //     .Read_data2(Read_data2)
+    // );
 
     // Control logic for store operation
-    always @(posedge clk or posedge reset) begin
-        if (reset) begin
-            address <= 32'b0;
-            write_data <= 32'b0;
-            write_enable <= 1'b0; // Change this to 0 when reset
-        end else begin
-            address <= ALU_output;
-            write_data <= Read_data2; // Data to be stored
-            write_enable <= 1'b1;
-        end
-    end
+    // always @(posedge clk or posedge reset) begin
+    //     if (reset) begin
+    //         address <= 32'b0;
+    //         write_data <= 32'b0;
+    //         write_enable <= 1'b0; // Change this to 0 when reset
+    //     end else begin
+    //         address <= ALU_output;
+    //         write_data <= Read_data2; // Data to be stored
+    //         write_enable <= 1'b1;
+    //     end
+    // end
 
 
 endmodule

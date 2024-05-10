@@ -1,4 +1,4 @@
-`timescale 1ps/1ps
+`timescale 1ns/1ps
 `include "Store.v"
 
 module store_tb();
@@ -38,18 +38,20 @@ always #5 clk = ~clk; // Toggle every 5 time units
         $dumpvars(0, store_tb);
 
         // Test case 1
+        // should be 16 bit instruction 
         #10 instruction = 32'b101011_00100_01001_0000000000000100;
-    Read_data1  = 32'h00000000;
-    Read_data2  = 32'h12345678;
+        Read_data1  = 32'h00000000;
+        Read_data2  = 32'h12345678;
 
-#20  // Wait for one clock cycle
+        #20  // Wait for one clock cycle
 
-// Test case 2
-#10 instruction = 32'b101011_00100_01010_0000000000100000;
-    Read_data1  = 32'h0000001C;
-    Read_data2  = 32'hABCDEF01;
+        // Test case 2
+        // should be 16 bit instruction
+        #10 instruction = 32'b101011_00100_01010_0000000000100000;
+        Read_data1  = 32'h0000001C;
+        Read_data2  = 32'hABCDEF01;
 
-#20  // Wait for one clock cycle
+        #20  // Wait for one clock cycle
         $finish;  // End the simulation
     end
 
