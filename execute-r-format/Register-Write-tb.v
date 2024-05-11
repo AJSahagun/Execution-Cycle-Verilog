@@ -3,9 +3,9 @@
 module read_register_tb;
 
     // Inputs
-    reg [4:0] rs_address, rd_address, out_address;
+    reg [4:0] rs_address, rt_address, out_address;
     reg clk, reset_input, write_enabled;
-    reg [31:0] rs_data, rd_data;
+    reg [31:0] rs_data, rt_data;
     reg [2:0] ALU_operation;
 
     reg [31:0] output_storage; //buffer kailangan!!!
@@ -22,7 +22,7 @@ module read_register_tb;
       .reset_input(reset_input),
       .write_enabled(write_enabled),
       .rs_data(rs_data),
-      .rd_data(rd_data),
+      .rt_data(rt_data),
       .ALU_operation(ALU_operation),
       .out_data(out_data)
     );
@@ -39,10 +39,10 @@ module read_register_tb;
         reset_input = 0;
         write_enabled = 0;
         rs_address = 5'b00001;
-        rd_address = 5'b00010;
+        rt_address = 5'b00010;
         out_address = 5'b00011;
         rs_data = 32'b00000000000000000000000000011111; // value is 31
-        rd_data = 32'b00000000000000000000000000101111; // value is 47  //out should be 31 + 47 = 78
+        rt_data = 32'b00000000000000000000000000101111; // value is 47  //out should be 31 + 47 = 78
         ALU_operation = 3'b000; // Adder operation
 
         // Wait for 10 clock cycles
@@ -50,7 +50,7 @@ module read_register_tb;
 
         $display("Before");
         $display("rs_data output: %d", rs_data);
-        $display("rd_data output: %d", rd_data);
+        $display("rt_data output: %d", rt_data);
         $display("out_data output: %d", out_data);
 
         // Write data to the register
@@ -67,7 +67,7 @@ module read_register_tb;
 
         $display("AFTER");
         $display("rs_data output: %d", rs_data);
-        $display("rd_data output: %d", rd_data);
+        $display("rt_data output: %d", rt_data);
         $display("out_data output: %d", out_data);
 
         if (out_data == output_storage) begin
