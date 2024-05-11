@@ -1,64 +1,53 @@
 `include "ALU.v"
 `include "RegisterFile.v"
 `include "SignExtend.v"
+`include "Memory.v"
 
-module store0(
+module store(
     input clk, reset,
-    input [31:0] instruction,
-    input wire [31:0] Read_data1,
-    input wire [31:0] Read_data2,
-    // input [4:0] Read_register1,
-    // input [4:0] Read_register2,
-    // input [4:0] Write_register,
-    // input [31:0] Write_data,
-    output reg [31:0] address,
-    output reg [31:0] write_data,
-    output reg write_enable
+    input [15:0] instruction,  // 16-bit instruction input
+    input wire [31:0] Read_register1, // 32-bit value from register file (base address)
+    input wire [31:0] Read_register2, // 32-bit value from register file (data to be stored)
+    input wire write_enable // Control signal to enable memory write
 );
 
-    wire [31:0] Sign_extended;
-    wire [31:0] ALU_output;
-    wire ALU_zero;
+    wire [31:0] Read_data1;
+    wire [31:0] Read_data2; // Source data to be stored
+    wire [31:0] Sign_extended; // Sign-extended immediate value
+    wire [31:0] ALU_output; // Calculated memory address
+    wire ALU_zero; // Zero flag from ALU 
 
-    // Sign extend module instantiation
+    // Register File instance
+    RegisterFile RF (
+        .clk(clk),
+        .reset(reset),
+        .Read_register1(Read_register1),
+        .Read_register2(Read_register2),
+        .Read_data1(Read_data1), // Base address
+        .Read_data2(Read_data2) // Data to be stored
+    );
+
+    // Sign Extension instance
     sign_extend SE (
-        .in(instruction[15:0]),
-        .out(Sign_extended)
+        .in(instruction), // Lower bits of instruction (immediate value)
+        .out(Sign_extended) // Sign-extended immediate value
     );
 
-    // ALU module instantiation
+    // ALU instance
     ALU alu (
-        .a(Read_data1),
-        .b(Sign_extended),
-        .alu_control(3'b010), // Addition operation
-        .result(ALU_output),
-        .zero(ALU_zero)
+        .a(Read_data1), // Base address
+        .b(Sign_extended), // Sign-extended immediate value
+        .alu_control(3'b010), // Control signal for addition
+        .result(ALU_output), // Calculated memory address
+        .zero(ALU_zero) // Zero flag
     );
 
-    // RegisterFile registerfile (
-    //      .reset(reset),
-    //      .clk(clk),
-    //     // .RegWrite(RegWrite),
-    //     // .Read_register1(Read_register1),
-    //     // .Read_register2(Read_register2),
-    //     // .Write_register(Write_register),
-    //     // .Write_data(Write_data),
-    //     .Read_data1(Read_data1),
-    //     .Read_data2(Read_data2)
-    // );
-
-    // Control logic for store operation
-    // always @(posedge clk or posedge reset) begin
-    //     if (reset) begin
-    //         address <= 32'b0;
-    //         write_data <= 32'b0;
-    //         write_enable <= 1'b0; // Change this to 0 when reset
-    //     end else begin
-    //         address <= ALU_output;
-    //         write_data <= Read_data2; // Data to be stored
-    //         write_enable <= 1'b1;
-    //     end
-    // end
-
+    // Memory instance
+    memory MEM (
+        .write_data(Read_data2), // Data to be stored
+        .address(ALU_output), // Calculated memory address
+        .write_enable(write_enable), // Control signal to enable write
+        .clk(clk)
+    );
 
 endmodule

@@ -1,5 +1,5 @@
 `timescale 1ps/1ps
-`include "Store2.v"
+`include "Store.v"
 
 module store_tb();
 
