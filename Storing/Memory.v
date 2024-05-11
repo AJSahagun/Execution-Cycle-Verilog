@@ -1,3 +1,4 @@
+`timescale 1ps/1ps
 module memory (
     input clk, // Clock signal
     input write_enable, // Write enable signal
