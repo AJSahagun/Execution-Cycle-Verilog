@@ -73,3 +73,25 @@ How It Integrates
 8. Click the signals and observe.
 
 
+## Group 3 (Execution - Storing Process)
+
+### Process:
+1. Register File: The Register File decodes the instruction and temporarily stores the data in the registers. 
+2. Sign Extend: It extracts the 16-bit offset field from the instruction and sign-extends it to 32 bits.
+3. ALU: The ALU control combines the sign-extended offset and the base register value. It adds them up using addition, then sends the result as the memory address.
+4. Memory: Updates the memory by storing data from the results of computations.
+
+### How to test:
+1. Ensure that the latest version of the *[Icarus Verilog](https://bleyer.org/icarus/)* is installed.
+2. Clone the project locally, download the code on the web, through Github Desktop, or through Github CLI.
+3. Open the terminal of your choice:
+    1. Change directory to the file path of the project
+    2. Use the command:
+        - If you modified the test bench: `iverilog -o Store_tb.vvp Store_tb.v`
+        - To run the test bench in terminal: `vvp Store_tb.vvp`
+4. (Optional) Open in GTKWave:
+    1. Use the command `gtkwave` to open GTKWave
+    2. Go to `File > Open New Tab >`
+    3. Locate `Store_tb.vcd`
+    4. In Type | Signals tab; Choose and append to see the wave representation.
+
