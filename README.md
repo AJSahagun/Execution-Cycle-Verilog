@@ -50,15 +50,37 @@ Computer Architecture (Group Activity)
     3. Locate `dump.vcd`
     4. Append all the signals and observe how writing data in registers, and operations are executed works.
 
+## Group 3 (Execution - Storing Process)
 
+### Process:
 
-## Group 6 (Decoding Process) 
+Register File: The Register File decodes the instruction and temporarily stores the data in the registers.
+Sign Extend: It extracts the 16-bit offset field from the instruction and sign-extends it to 32 bits.
+ALU Control: The ALU control combines the sign-extended offset and the base register value. It adds them up using addition, then sends the result as the memory address.
+Memory Write: Updates the memory by storing data from the results of computations.
 
-How It Integrates  
+### How to test:
+
+Ensure that the latest version of the Icarus Verilog is installed.
+Clone the project locally, download the code on the web, through Github Desktop, or through Github CLI.
+Open the terminal of your choice:
+i. Change directory to the file path of the project. (cd Storing)
+ii. Use the command:
+If you modified the test bench: iverilog -o Store_tb.vvp Store_tb.v
+To run the test bench in terminal: vvp Store_tb.vvp
+
+(Optional) Open in GTKWave.
+i. Use the command: gtkwave Store_tb.vcd
+ii. Append all the signals and observe.
+
+## Group 6 (Decoding Process)
+
+How It Integrates
+
 1. Decode: Decodes instructions to determine the operation and generate appropriate control signals.
 2. Register File: Implements a register file for storing and accessing data within the processor.
-3. ALU: Defines an ALU capable of performing various arithmetic and logical operations.  
-4. Control Unit: Generates control signals for the processor based on the instruction's opcode.  
+3. ALU: Defines an ALU capable of performing various arithmetic and logical operations.
+4. Control Unit: Generates control signals for the processor based on the instruction's opcode.
 5. Testbench: Provides a simulation environment to test the processor design by loading instructions and driving the clock.
 
 ### How to simulate
@@ -67,9 +89,7 @@ How It Integrates
 2. Clone the project using Github Desktop
 3. Ensure that that the cloned project is located inside iverilog bin's folder
 4. Open command prompt and go locate current directory to the cloned project
-5. Use this command (verilog -o simulation *.v) 
+5. Use this command (verilog -o simulation *.v)
 6. Then, type vvp simulation
 7. Locate gtkwave.exe in your verilog folder. Click new tab and click the generated vcd file
 8. Click the signals and observe.
-
-
