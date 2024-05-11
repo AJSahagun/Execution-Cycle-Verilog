@@ -1,62 +1,72 @@
 `timescale 1ps/1ps
-`include "Store.v"
+`include "Store2.v"
 
 module store_tb();
 
-    reg clk;
-    reg reset;
-    reg [31:0] instruction;
-    reg [31:0] Read_data1;
-    reg [31:0] Read_data2;
-    wire [31:0] address;
-    wire write_enable;
-    wire [31:0] write_data;
+    reg clk, reset;
+    reg [15:0] instruction;
+    reg [31:0] Read_register1, Read_register2;
+    reg write_enable;
 
-    store DUT (
+    store dut (
         .clk(clk),
         .reset(reset),
         .instruction(instruction),
-        .Read_data1(Read_data1),
-        .Read_data2(Read_data2),
-        .address(address),
-        .write_enable(write_enable),
-        .write_data(write_data)
+        .Read_register1(Read_register1),
+        .Read_register2(Read_register2),
+        .write_enable(write_enable)
     );
 
-always #5 clk = ~clk; // Toggle every 5 time units
+
+always #10 clk = ~clk; // Toggle every 5 time units
 
     initial begin
+        $dumpfile("Store_tb.vcd");
+        $dumpvars(0, store_tb);
+        
         clk = 0;
         reset = 1; // Apply initial reset
         instruction = 0;
-        Read_data1 = 0;
-        Read_data2 = 0;
+        Read_register1 = 5'b00000;
+        Read_register2 = 5'b00000;
+        write_enable = 0;
 
-        #20 reset = 0;
-
-        $dumpfile("Store_tb.vcd");
-        $dumpvars(0, store_tb);
+        #10 reset = 0;
 
         // Test case 1
-        #10 instruction = 32'b101011_00100_01001_0000000000000100;
-    Read_data1  = 32'h00000000;
-    Read_data2  = 32'h12345678;
+        #20 
+        
+        write_enable = 0;
+        instruction = 16'b1010101010101010;
+        Read_register1  = 5'b00000;
+        Read_register2  = 5'b01011;
 
-#20  // Wait for one clock cycle
+        #30
 
-// Test case 2
-#10 instruction = 32'b101011_00100_01010_0000000000100000;
-    Read_data1  = 32'h0000001C;
-    Read_data2  = 32'hABCDEF01;
+        write_enable = 1;
 
-#20  // Wait for one clock cycle
-        $finish;  // End the simulation
+        #30
+
+        // Test case 2
+        write_enable = 0;
+        instruction = 16'b1100110011001100;
+        Read_register1  = 5'b00011;
+        Read_register2  = 5'b10001;
+
+        #30
+
+        write_enable = 1;
+
+        #30
+
+        $finish;  
+
     end
 
     // Monitor signals for display
     initial begin
-        $monitor("Time=%3d | address=%h | write_enable=%b | write_data=%h",
-                 $time, address, write_enable, write_data);
+        $monitor("Time=%3d | instruction=%h | Read_register1=%h | Read_register2=%h | write_enable=%b",
+                 $time, instruction, Read_register1, Read_register2, write_enable);
     end
 
 endmodule

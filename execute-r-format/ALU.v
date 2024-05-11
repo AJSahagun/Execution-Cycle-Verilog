@@ -1,17 +1,18 @@
-// ALU.v
-module ALU (
-    input [31:0] operand1, operand2,
-    input [3:0] ALU_control,
-    output reg [31:0] result
-);
-
-always @(*)
-begin
-    case (ALU_control)
-        4'b0000: result = operand1 + operand2; // Addition
-        // Other ALU operations can be added here
-        default: result = 0;
+module ALU(
+    input [2:0] ALUop, 
+    input [31:0] A, B, 
+    output reg [31:0] result, 
+    output reg zero);
+    
+  always @(*) begin
+    case (ALUop)
+      3'b000: result = A + B;  // ADD
+      3'b001: result = A - B;  // SUB
+      3'b010: result = A & B;  // AND
+      3'b011: result = A | B;  // OR
+      3'b100: result = A < B;  // SLT (set if less than)
+      default: result = 32'b0; 
     endcase
-end
-
+    zero = (result == 0); 
+  end
 endmodule

@@ -1,23 +1,12 @@
-// `include "ALU.v"
 `include "Memory.v"
+`timescale 1ps/1ps
 
 module memory_tb;
-    // reg [31:0] a, b;
-    // reg [2:0] alu_control;
-    // wire [31:0] result;
-    // wire zero;
     reg [31:0] address; 
     reg [31:0] write_data;
     reg clk;
     reg write_enable;
     wire [31:0] mem_read_data;
-
-    // ALU alu (
-    //     .a(a), 
-    //     .b(b), 
-    //     .alu_control(alu_control), 
-    //     .result(result), 
-    //     .zero(zero));
 
     memory mem (
         .clk(clk),
@@ -31,30 +20,36 @@ module memory_tb;
         $dumpvars(0, memory_tb);
 
         clk = 0;
-        write_data = 8'h56;
+        write_data = 0;
         write_enable = 0;
-        address = 55;
+        address = 32'h55;
         #20
 
-        write_enable = 1;
+        write_enable = 0;
+        
         #20;
 
         write_enable = 0;
-        address = 66;
+        address = 32'h66;
         write_data = 8'h36;
+
         #20
 
         write_enable = 1;
         #20 
 
         write_enable = 0;
+        address = 32'h77;
+        write_data = 8'h37;
         #20
 
-        address = 55;
+        write_enable = 1;
+
         #20
         
         $finish();
     end
 
     always #10 clk = ~clk; //clock generation
+
 endmodule

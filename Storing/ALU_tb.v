@@ -25,6 +25,8 @@ module alu_tb ();
         $dumpvars(0, alu_tb); //variables dumped at time 0
         //Test operations here
         //Test For AND Waves
+
+
         a = 1;
         b = 1;
         alu_control = 3'b000; // AND
@@ -34,6 +36,7 @@ module alu_tb ();
         b = 0;
         alu_control = 3'b000; // AND
         #20;
+
         $display("Result of AND (1,0): %d", result);
 
         a = 1;

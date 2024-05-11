@@ -17,7 +17,7 @@ module signextend_tb;
   initial begin
     // Test cases with positive and negative values
     $display("Testing sign_extend module");
-    $monitor("in = %h, out = %h", in, out);
+    $monitor("in = %b, out = %b", in, out);
 
     // Positive test case
     in = 16'b0000_0000_1111_1111;  // Positive value (all bits 0)
