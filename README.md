@@ -49,29 +49,7 @@ Computer Architecture (Group Activity)
     2. Go to `File > Open New Tab >`
     3. Locate `dump.vcd`
     4. Append all the signals and observe how writing data in registers, and operations are executed works.
-
-
-
-## Group 6 (Decoding Process) 
-
-How It Integrates  
-1. Decode: Decodes instructions to determine the operation and generate appropriate control signals.
-2. Register File: Implements a register file for storing and accessing data within the processor.
-3. ALU: Defines an ALU capable of performing various arithmetic and logical operations.  
-4. Control Unit: Generates control signals for the processor based on the instruction's opcode.  
-5. Testbench: Provides a simulation environment to test the processor design by loading instructions and driving the clock.
-
-### How to simulate
-
-1. Ensure Icarus Verilog is installed
-2. Clone the project using Github Desktop
-3. Ensure that that the cloned project is located inside iverilog bin's folder
-4. Open command prompt and go locate current directory to the cloned project
-5. Use this command (verilog -o simulation *.v) 
-6. Then, type vvp simulation
-7. Locate gtkwave.exe in your verilog folder. Click new tab and click the generated vcd file
-8. Click the signals and observe.
-
+       
 
 ## Group 3 (Execution - Storing Process)
 
@@ -94,4 +72,25 @@ How It Integrates
     2. Go to `File > Open New Tab >`
     3. Locate `Store_tb.vcd`
     4. In Type | Signals tab; Choose and append to see the wave representation.
+  
+   
+## Group 6 (Decoding Process) 
+
+How It Integrates  
+1. Decode: Decodes instructions to determine the operation and generate appropriate control signals.
+2. Register File: Implements a register file for storing and accessing data within the processor.
+3. ALU: Defines an ALU capable of performing various arithmetic and logical operations.  
+4. Control Unit: Generates control signals for the processor based on the instruction's opcode.  
+5. Testbench: Provides a simulation environment to test the processor design by loading instructions and driving the clock.
+
+### How to simulate
+
+1. Ensure Icarus Verilog is installed
+2. Clone the project using Github Desktop
+3. Ensure that that the cloned project is located inside iverilog bin's folder
+4. Open command prompt and go locate current directory to the cloned project
+5. Use this command (verilog -o simulation *.v) 
+6. Then, type vvp simulation
+7. Locate gtkwave.exe in your verilog folder. Click new tab and click the generated vcd file
+8. Click the signals and observe.
 
