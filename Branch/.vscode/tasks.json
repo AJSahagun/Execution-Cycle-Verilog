@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "iverilog -o output.vvp BranchTargetCalculator_tb.v BranchTargetCalculator.v"
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "vvp output.vvp",
+            "dependsOn": "compile"
+        },
+        {
+            "label": "wave",
+            "type": "shell",
+            "command": "gtkwave waveform.vcd",
+            "dependsOn": "run"
+        },
+        {
+            "label": "all",
+            "dependsOn": ["compile", "run", "wave"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
