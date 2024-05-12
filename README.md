@@ -76,6 +76,10 @@ Computer Architecture (Group Activity)
 
 ## Group 5 (Branch Operation) 
 
+### Process:
+1. compare the operands read from the Register File during decode or equality (zero ALU output)
+2. compute the branch target address by adding the updated PC to the 16-bit signed-extended offset field in the instruction and shifted left by 2 bits
+
 ### How to test:
 
 1. Ensure that the latest version of *[Icarus Verilog](https://bleyer.org/icarus/)* is installed.
