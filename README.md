@@ -73,6 +73,30 @@ Computer Architecture (Group Activity)
     3. Locate `Store_tb.vcd`
     4. In Type | Signals tab; Choose and append to see the wave representation.
 
+## Group 4 (Loading Process)
+
+### Process:
+1.  	The base address is read from the specified register.
+2.  	The 16-bit offset field from the instruction is sign extended to 32 bits.
+3.  	The ALU combines the sign-extended offset and the base register value to calculate the memory address.
+4.  	 The calculated address is sent to the memory unit and a memory read operation is initiated to fetch the data from the address.
+5.  	The data retrieved from memory is written to the destination register specified in the instruction.
+
+### How to Test:
+
+Ensure that the latest version of Icarus Verilog is installed.
+Clone the project locally:
+Download the code from the web, through the GitHub desktop, or Github CLI.
+Open the terminal:
+Change the directory to the file path of the project.
+Compile and Run the Test Bench:
+iverilog -o tb.vvp tb.v
+vvp tb.vvp
+
+(Optional) Visualize in GTKWave:
+Use the command gtkwave to open GTKWave.
+Open the generated VCD file (tb.vcd).
+Analyze the waveforms to verify the behavior of the load instruction.
 
 ## Group 5 (Branch Operation) 
 
